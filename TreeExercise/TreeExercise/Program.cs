@@ -34,9 +34,8 @@ namespace TreeExercise
                     gettingInput = false;
                 }
             }
-
             Tree myTree = new Tree(userLevels);
-
+            Console.WriteLine(myTree.Root.Left.Right.Data);
             myTree.Print();
             Console.Write("Press any key to continue...");
             Console.ReadKey();

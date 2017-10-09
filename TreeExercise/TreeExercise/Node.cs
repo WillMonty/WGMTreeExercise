@@ -26,7 +26,7 @@ namespace TreeExercise
         }
 
         /// <summary>
-        /// Parameterized Constructor
+        /// Parameterized Constructor with Parent, both Children, and Data
         /// </summary>
         /// <param name="p">Node Parent</param>
         /// <param name="l">Left Child of the Node</param>
@@ -37,6 +37,17 @@ namespace TreeExercise
             parent = p;
             left = l;
             right = r;
+            data = d;
+        }
+
+        /// <summary>
+        /// Parameterized Constructor with just a Parent and Data
+        /// </summary>
+        /// <param name="p">Node Parent</param>
+        /// <param name="d">Node Data</param>
+        public Node(Node p, int d)
+        {
+            parent = p;
             data = d;
         }
 
