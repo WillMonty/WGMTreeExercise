@@ -15,19 +15,31 @@ namespace TreeExercise
         static void Main(string[] args)
         {
             Console.WriteLine("William Montgomery NeuroScouting Tree Exercise");
-            Console.Write("Please enter the number of levels you want the tree to be: ");
+            int userLevels = 0; //The number of levels the user will specify
 
-            int userLevels;
-            Int32.TryParse(Console.ReadLine(), out userLevels);
-
-            if(userLevels == 0)
+            bool gettingInput = true;
+            while (gettingInput)
             {
-                Console.WriteLine("You can't have a tree with 0 or fewer levels! Try again.\n");
+                Console.Write("Please enter the number of levels you want the tree to be: ");
+                Int32.TryParse(Console.ReadLine(), out userLevels);
+
+                if (userLevels <= 0)
+                {
+                    Console.WriteLine("You can't have a tree with 0 or fewer levels! Try again.\n");
+                    continue;
+                }
+
+                if(userLevels > 0)
+                {
+                    gettingInput = false;
+                }
             }
 
             Tree myTree = new Tree(userLevels);
 
             myTree.Print();
+            Console.Write("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
