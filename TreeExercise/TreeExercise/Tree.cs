@@ -16,6 +16,7 @@ namespace TreeExercise
     {
         private Node root;
         private int levels; //The total number of levels of the tree
+        private Node[] allNodes; //Every node in the tree
 
         /// <summary>
         /// Default Tree Constructor. Creates just a root node with no children.
@@ -23,7 +24,6 @@ namespace TreeExercise
         public Tree()
         {
             levels = 1;
-            MakeTree();
         }
 
         /// <summary>
@@ -33,6 +33,7 @@ namespace TreeExercise
         public Tree(int lev)
         {
             levels = lev;
+            allNodes = new Node[(int)Math.Pow(2, levels)];
             MakeTree();
         }
 
@@ -42,58 +43,15 @@ namespace TreeExercise
         private void MakeTree()
         {
             root = new Node(1);
+            allNodes[0] = root;
 
             //If the level goes beyond just the root
             if(levels > 1)
             {
-                //Create children from root
-                root.Left = new Node(root, root.Data);
-                root.Right = new Node(root, root.Data);
-
-                //Start recursive creation functions from these two children
-                MakeLevel(2, root.Left);
-                MakeLevel(2, root.Right); 
-            }
-        }
-
-        /// <summary>
-        /// Recursive function that makes a new individual level of the tree starting from currN. Stops once the number of levels is reached.
-        /// </summary>
-        /// <param name="currLevel">The level of the tree being made.</param>
-        /// <param name="currNode">The node being initialized with new children on this level.</param>
-        private void MakeLevel(int currLevel, Node currN)
-        {
-            //Should the recursion end? (Has the current level hit the desired number of levels?)
-            if(currLevel < levels)
-            {
-                Node grandparent = currN.Parent.Parent;
-
-                //Check if there is a left neighbor to this node's parent
-                //First checks if there is a grandparent and then checks if that grandparent's left is actually different from this Node's parent.
-                if (grandparent != null && grandparent.Left != currN.Parent)
+                for(int i = 1; i < allNodes.Length; i++)
                 {
-                    //Parent has a left neighbor...
-                    currN.Left = new Node(currN, currN.Parent.Data + grandparent.Left.Data);
+                    //Right Edge: 2n-1 Left Edge: 2n-2
                 }
-                else
-                {
-                    currN.Left = new Node(currN, currN.Parent.Data);
-                }
-
-                //Check if there is a right neighbor to this node's parent
-                if (grandparent != null && grandparent.Right != currN.Parent)
-                {
-                    //Parent has a right neighbor...
-                    currN.Right = new Node(currN, currN.Parent.Data + grandparent.Right.Data);
-                }
-                else
-                {
-                    currN.Right = new Node(currN, currN.Parent.Data);
-                }
-
-                //Go another level deeper on the left and right
-                MakeLevel(currLevel + 1, currN.Left);
-                MakeLevel(currLevel + 1, currN.Right);
             }
         }
 

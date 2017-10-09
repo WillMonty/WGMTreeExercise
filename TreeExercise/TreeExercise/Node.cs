@@ -12,10 +12,9 @@ namespace TreeExercise
     */
     class Node
     {
-        private Node parent;
-        private Node left;
-        private Node right;
-        private int data;
+        private int data; //The node's data
+        private int isEdge; //0 for not an edge, -1 for left edge, and 1 for right edge
+        private bool isLeftChild; //True for left child, False for right child
 
         /// <summary>
         /// Default Node constructor. Data set to 0.
@@ -23,32 +22,6 @@ namespace TreeExercise
         public Node()
         {
             data = 0;
-        }
-
-        /// <summary>
-        /// Parameterized Constructor with Parent, both Children, and Data
-        /// </summary>
-        /// <param name="p">Node Parent</param>
-        /// <param name="l">Left Child of the Node</param>
-        /// <param name="r">Right Child of the Node</param>
-        /// <param name="d">Node Data</param>
-        public Node(Node p, Node l, Node r, int d)
-        {
-            parent = p;
-            left = l;
-            right = r;
-            data = d;
-        }
-
-        /// <summary>
-        /// Parameterized Constructor with just a Parent and Data
-        /// </summary>
-        /// <param name="p">Node Parent</param>
-        /// <param name="d">Node Data</param>
-        public Node(Node p, int d)
-        {
-            parent = p;
-            data = d;
         }
 
         /// <summary>
@@ -60,46 +33,18 @@ namespace TreeExercise
             data = d;
         }
 
+        /// <summary>
+        /// Construct Node with initial data.
+        /// </summary>
+        /// <param name="d">Node Data</param>
+        public Node(int d, int edge, bool child)
+        {
+            data = d;
+            IsEdge = edge;
+            IsLeftChild = child;
+        }
+
         //Properties of Node class
-        public Node Parent
-        {
-            get
-            {
-                return parent;
-            }
-
-            set
-            {
-                parent = value;
-            }
-        }
-
-        public Node Left
-        {
-            get
-            {
-                return left;
-            }
-
-            set
-            {
-                left = value;
-            }
-        }
-
-        public Node Right
-        {
-            get
-            {
-                return right;
-            }
-
-            set
-            {
-                right = value;
-            }
-        }
-
         public int Data
         {
             get
@@ -110,6 +55,32 @@ namespace TreeExercise
             set
             {
                 data = value;
+            }
+        }
+
+        public int IsEdge
+        {
+            get
+            {
+                return isEdge;
+            }
+
+            set
+            {
+                isEdge = value;
+            }
+        }
+
+        public bool IsLeftChild
+        {
+            get
+            {
+                return isLeftChild;
+            }
+
+            set
+            {
+                isLeftChild = value;
             }
         }
     }

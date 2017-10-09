@@ -28,14 +28,12 @@ namespace TreeExercise
                     Console.WriteLine("You can't have a tree with 0 or fewer levels! Try again.\n");
                     continue;
                 }
-
-                if(userLevels > 0)
+                else
                 {
                     gettingInput = false;
                 }
             }
             Tree myTree = new Tree(userLevels);
-            Console.WriteLine(myTree.Root.Left.Right.Data);
             myTree.Print();
             Console.Write("Press any key to continue...");
             Console.ReadKey();
