@@ -35,7 +35,7 @@ namespace TreeExercise
             }
             Tree myTree = new Tree(userLevels);
             myTree.Print();
-            Console.Write("Press any key to continue...");
+            Console.Write("Press any key to exit...");
             Console.ReadKey();
         }
     }

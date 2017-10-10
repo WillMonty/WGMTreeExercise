@@ -13,7 +13,7 @@ namespace TreeExercise
     class Node
     {
         private int data; //The node's data
-        private int isEdge; //0 for not an edge, -1 for left edge, and 1 for right edge
+        private int isEdge; //0 for not an edge, -1 for left-most edge, and 1 for right-most edge
         private bool isLeftChild; //True for left child, False for right child
 
         /// <summary>
