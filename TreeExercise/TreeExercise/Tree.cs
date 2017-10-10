@@ -62,7 +62,7 @@ namespace TreeExercise
                     {
                         currNode.IsEdge = -1;
                     }
-                    else if(i == (2 * currLevel - 1)) //Right most edge
+                    else if(i == Math.Pow(2, currLevel) - 1) //Right most edge
                     {
                         currNode.IsEdge = 1;
                         currLevel++; //New level will begin after this node
@@ -103,7 +103,14 @@ namespace TreeExercise
         /// </summary>
         public void Print()
         {
-            //Print implementation
+            int totalTabs = allNodes.Length;
+            int currLevel = 1;
+
+            for(int i = 1; i < allNodes.Length; i++)
+            {
+
+            }
+
         }
 
         //Properties of the tree class
