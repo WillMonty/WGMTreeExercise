@@ -103,30 +103,25 @@ namespace TreeExercise
         /// </summary>
         public void Print()
         {
-            int totalSpaces = allNodes.Length + 10; //Total spaces is based on how many nodes will be printed plus some padding
+            int totalSpaces = allNodes.Length * 2; //Total spaces is based on how many nodes will be printed plus some padding. Max width of tree
             int gaps = 2; //Number of gaps at this level of the tree. Root has a gap on either side so 2 gaps to start.
             int currLevel = 1;
 
             //Put in root first since it is an edge case
             insertSpaces(totalSpaces / gaps);
             Console.Write(root.Data);
-            insertSpaces(totalSpaces / gaps);
             Console.WriteLine();
 
-            if (levels > 1) //If level goes beyond root
-            {
-                //Add first line of slashes
-                currLevel++;
-                gaps = (2 + (int)Math.Pow(2, currLevel)) / 2; //Increase number of gaps for next level
+            currLevel++;
+            //gaps = (2 + (int)Math.Pow(2, currLevel));
+            gaps *= 2;
 
-                insertSpaces(totalSpaces / gaps);
-                Console.Write("/");
-                insertSpaces(totalSpaces / gaps);
-                Console.Write("\\");
-                Console.WriteLine();
+            if (levels == 1) //If level doesn't go beyond root
+            {
+                return;
             }
 
-            //Go through rest of nodes (this will be skipped if their is only the root)
+            //Go through rest of nodes
             for (int i = 2; i < allNodes.Length; i++)
             {
                 int spacesPerGap = totalSpaces / gaps;
@@ -138,38 +133,14 @@ namespace TreeExercise
                 Console.Write(allNodes[i].Data);
                 insertSpaces(spacesPerGap);
 
-               /* if (i != gaps)
-                {
-                    insertSpaces(spacesPerGap);
-                }
-                else
-                {
-                    insertSpaces(spacesPerGap/2);
-                }*/
-
                 //If this is the right most node and not the last level, insert a new line of slashes and a new line for the next level
                 if (allNodes[i].IsEdge == 1 && currLevel != levels)
                 {
                     Console.WriteLine();
                     currLevel++;
-                    gaps = (2 + (int)Math.Pow(2, currLevel))/2; //Increase number of gaps for next level
+                    //gaps = (2 + (int)Math.Pow(2, currLevel)); //Increase number of gaps for next level
+                    gaps *= 2;
                     spacesPerGap = totalSpaces / gaps;
-                    insertSpaces(spacesPerGap); //Insert initial spaces
-
-                    for(int j = 0; j < (currLevel * 2) - 2; j++) //Add a set of slashes for each node in the level
-                    {
-                        if(j % 2 == 0) //Even numbers are left children and will be backslashes. Right children have forward slashes.
-                        {
-                            Console.Write("/");
-                        }
-                        else
-                        {
-                            Console.Write("\\");
-                        }
-                        insertSpaces(spacesPerGap);
-                    }
-                    Console.WriteLine();
-
                 }
             }
             Console.WriteLine(); //New line to end the print
