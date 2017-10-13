@@ -43,13 +43,13 @@ namespace TreeExercise
         private void MakeTree()
         {
             root = new Node(1);
-            allNodes[1] = root; //Indexed starting at 1 for index math to be cleaner
+            AllNodes[1] = root; //Indexed starting at 1 for index math to be cleaner
 
             //If the level goes beyond just the root
             if(levels > 1)
             {
                 int currLevel = 2; //What level is the tree currently building on?
-                for (int i = 2; i < allNodes.Length; i++)
+                for (int i = 2; i < AllNodes.Length; i++)
                 {
                     Node currNode = new Node();
                     int parentIndex = i / 2; //Parent of this node is half the node's index. (Integer division)
@@ -74,26 +74,26 @@ namespace TreeExercise
                     {
                         if(currNode.IsEdge == -1) //Nodes on the left-most edge have parents without left neighbors
                         {
-                            currNode.Data = allNodes[parentIndex].Data;
+                            currNode.Data = AllNodes[parentIndex].Data;
                         }
                         else
                         {
-                            currNode.Data = allNodes[parentIndex].Data + allNodes[parentIndex - 1].Data;
+                            currNode.Data = AllNodes[parentIndex].Data + AllNodes[parentIndex - 1].Data;
                         }
                     }
                     else //Right Children
                     {
                         if (currNode.IsEdge == 1) //Nodes on the right-most edge have parents without right neighbors
                         {
-                            currNode.Data = allNodes[parentIndex].Data;
+                            currNode.Data = AllNodes[parentIndex].Data;
                         }
                         else
                         {
-                            currNode.Data = allNodes[parentIndex].Data + allNodes[parentIndex + 1].Data;
+                            currNode.Data = AllNodes[parentIndex].Data + AllNodes[parentIndex + 1].Data;
                         }
                     }
 
-                    allNodes[i] = currNode; //Add completed node to the node array
+                    AllNodes[i] = currNode; //Add completed node to the node array
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace TreeExercise
         /// </summary>
         public void Print()
         {
-            int totalSpaces = allNodes.Length * 2; //Total spaces is based on how many nodes will be printed plus some padding. Max width of tree
+            int totalSpaces = AllNodes.Length * 2; //Total spaces is based on how many nodes will be printed plus some padding. Max width of tree
             int gaps = 2; //Number of gaps at this level of the tree. Root has a gap on either side so 2 gaps to start.
             int currLevel = 1;
 
@@ -122,19 +122,19 @@ namespace TreeExercise
             }
 
             //Go through rest of nodes
-            for (int i = 2; i < allNodes.Length; i++)
+            for (int i = 2; i < AllNodes.Length; i++)
             {
                 int spacesPerGap = totalSpaces / gaps;
-                if (allNodes[i].IsEdge == -1) //If this is the left most node insert initial spaces
+                if (AllNodes[i].IsEdge == -1) //If this is the left most node insert initial spaces
                 {
                     insertSpaces(spacesPerGap);
                 }
 
-                Console.Write(allNodes[i].Data);
+                Console.Write(AllNodes[i].Data);
                 insertSpaces(spacesPerGap);
 
                 //If this is the right most node and not the last level, insert a new line of slashes and a new line for the next level
-                if (allNodes[i].IsEdge == 1 && currLevel != levels)
+                if (AllNodes[i].IsEdge == 1 && currLevel != levels)
                 {
                     Console.WriteLine();
                     currLevel++;
@@ -165,6 +165,14 @@ namespace TreeExercise
             get
             {
                 return root;
+            }
+        }
+
+        internal Node[] AllNodes
+        {
+            get
+            {
+                return allNodes;
             }
         }
     }
