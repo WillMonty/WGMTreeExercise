@@ -1,11 +1,11 @@
 # WGMTreeExercise
 NeuroScouting Tree Exercise for interview. Written in C#.
 
-##Compiling and Running the Code
+## Compiling and Running the Code
 A compiled application is at the top level of the project folder if you want to simply run the program.
 If you'd like to look at the code you can just open any of the scripts or open the Visual Studio solution entirely.
 
-##How it Works
+## How it Works
 The tree consists of nodes that belong to their own class in order to hold it's numerical data as well as variables to determine if it is on an edge or
 if it is the left or right child of another node. The tree itself is array based and contains a method to construct a tree through the creation of several nodes.
 The user selects how many levels deep the tree should be upon creation.  
@@ -13,7 +13,7 @@ The tree is created with the rules that all left children have a value of its pa
 all right children have a value of its parent value plus the value of the parent's right neighbor. If the parent node does not have the proper neighbor
 then the child node simply matches the value of the parent.
 
-##How the Code is Organized
+## How the Code is Organized
 * Node Class
   * Member variables
     * data
@@ -41,7 +41,7 @@ then the child node simply matches the value of the parent.
 	* Runs through all nodes while adjusting the number of gaps and spaces needed as the level of the tree increases on the way down.
   * Contains a helper method to quickly insert spaces into the console.
 
-##Interesting Optimizations
+## Interesting Optimizations
 I originally attempted the tree with a typical relationship base that had Nodes holding references to its children and its parent.
 This quickly broke down as the amount of traversal would have been ridiculous in many cases when finding parent's neighbors.
 I switched to an array based tree so that parent's indices are simply (currentIndex/2) and parent's neighbors are (currentIndex + or - 1).
